@@ -1,0 +1,29 @@
+{
+    "name": "tobischulz/artisan-forge-deploy",
+    "description": "A Laravel artisan command to easily deploy your code to a laravel forge server.",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Schulz",
+            "email": "tobias@byte.software",
+            "homepage": "https://byte.software"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "TobiSchulz\\ArtisanForgeDeploy\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TobiSchulz\\ArtisanForgeDeploy\\ArtisanForgeProvider"
+            ]
+        }
+    }
+}
