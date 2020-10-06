@@ -3,6 +3,7 @@
 namespace TobiSchulz\ArtisanForgeDeploy\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class ForgeDeployCommand extends Command
 {
@@ -18,7 +19,7 @@ class ForgeDeployCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Use Deployment Trigger URL of forge site';
+    protected $description = 'Use forge deployment trigger url';
 
     /**
      * The GuzzleHttp Client.
@@ -29,14 +30,10 @@ class ForgeDeployCommand extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @param \GuzzleHttp\Client $guzzle
      */
-    public function __construct(\GuzzleHttp\Client $guzzle)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->guzzle = $guzzle;
     }
 
     /**
@@ -46,11 +43,9 @@ class ForgeDeployCommand extends Command
      */
     public function handle()
     {
-        $goAhead = $this->confirm('Whould you like to deploy on Forge Server?');
+        $goAhead = $this->confirm('Whould you like to trigger deploy on Forge server?');
 
         if (!$goAhead) {
-            $this->line('...abort');
-
             return;
         }
 
@@ -64,22 +59,22 @@ class ForgeDeployCommand extends Command
 
         $this->line('Calling forge deployment trigger url...');
 
-        $response = $this->guzzle->request('POST', $deploymentUrl, [
+        $response = Http::withOptions([
             'http_errors' => false,
-        ]);
+        ])->post($deploymentUrl);
 
-        if ($response->getStatusCode() !== 200) {
+        if ($response->failed()) {
             $this->error("Error using forge deployment trigger url. {$response->getStatusCode()}");
-
-            return;
+            return 1;
         }
 
-        if ($response->getBody() != 'OK') {
-            $this->error("Forge error response: {$response->getBody()}");
-
-            return;
+        if ($response->body() !== 'OK') {
+            $this->error("Forge error response: {$response->body()}");
+            return 1;
         }
 
-        $this->info('Deployment is running!');
+        $this->info('Deployment has been triggered!');
+
+        return 0;
     }
 }
