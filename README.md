@@ -3,27 +3,40 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 
-This will give you the power to deploy your Laravel project on your configured Forge server site with this needful artisan command:
+This will give you the power to deploy your Laravel project on your configured Forge server site with this needful artisan command. This package requires PHP 7 and Laravel 5.7 or higher.
 
 ``` bash
 php artisan forge:deploy
 ```
 
-## Installation and usage
+![readme/artisan-forge-deploy-demo.gif](readme/artisan-forge-deploy-demo.gif)
 
-This package requires PHP 7 and Laravel 5.7 or higher. 
+## Installation
 
-Require this package in your project you like to deploy on forge by this artisan command:
+Pull this package in using composer:
 
-``` bash
-composer require --dev tobischulz/artisan-forge-deploy
-``` 
+Use the 2.0 Branch for Laravel 7 or 8
 
-Add the Key **FORGE_DEPLOY_URL** to your .env file.
+```bash
+composer require --dev obischulz/artisan-forge-deploy "^2.0"
+```
+
+Use 1.0 Branch for Laravel 5.7 or above
+
+```bash
+composer require --dev obischulz/artisan-forge-deploy "^1.0"
+```
+
+Next, add the Key **FORGE_DEPLOY_URL** to your .env file.
+
+```env
+FORGE_DEPLOY_URL=
+```
 
 ![readme/artisan-forge-deploy-env.png](readme/artisan-forge-deploy-env.png)
 
-You´re ready to go!
+You´re ready to go to fire `php artisan forge:deploy` on cli now.
+
 
 ## Credits
 
