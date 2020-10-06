@@ -15,19 +15,19 @@ php artisan forge:deploy
 
 Pull this package in using composer:
 
-Use the 2.0 Branch for Laravel 7 or 8
+**Use the 2.0 for Laravel 7 or 8**
 
 ```bash
 composer require --dev tobischulz/artisan-forge-deploy "^2.0"
 ```
 
-Use 1.0 Branch for Laravel 5.7 or above
+Use 1.0 for Laravel 5.7 or above
 
 ```bash
 composer require --dev tobischulz/artisan-forge-deploy "^1.0"
 ```
 
-Next, add the Key **FORGE_DEPLOY_URL** to your .env file.
+Next, add the Key **FORGE_DEPLOY_URL** to your .env file and copy the `Deployment Trigger URL` from your forge site details page.
 
 ```env
 FORGE_DEPLOY_URL=
