@@ -18,13 +18,13 @@ Pull this package in using composer:
 Use the 2.0 Branch for Laravel 7 or 8
 
 ```bash
-composer require --dev obischulz/artisan-forge-deploy "^2.0"
+composer require --dev tobischulz/artisan-forge-deploy "^2.0"
 ```
 
 Use 1.0 Branch for Laravel 5.7 or above
 
 ```bash
-composer require --dev obischulz/artisan-forge-deploy "^1.0"
+composer require --dev tobischulz/artisan-forge-deploy "^1.0"
 ```
 
 Next, add the Key **FORGE_DEPLOY_URL** to your .env file.
