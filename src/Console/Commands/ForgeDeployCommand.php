@@ -12,7 +12,10 @@ class ForgeDeployCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'forge:deploy';
+    protected $signature = 'forge:deploy
+
+                            {--force : Deploy without confirmation}
+    ';
 
     /**
      * The console command description.
@@ -43,10 +46,12 @@ class ForgeDeployCommand extends Command
      */
     public function handle()
     {
-        $goAhead = $this->confirm('Whould you like to trigger deploy on Forge server?');
+        if (!$this->isForced()) {
+            $goAhead = $this->confirm('Whould you like to trigger deploy on Forge server?');
 
-        if (!$goAhead) {
-            return;
+            if (!$goAhead) {
+                return;
+            }
         }
 
         $deploymentUrl = env('FORGE_DEPLOY_URL');
@@ -76,5 +81,19 @@ class ForgeDeployCommand extends Command
         $this->info('Deployment has been triggered!');
 
         return 0;
+    }
+
+    /**
+     * Return if param force is set
+     *
+     * @return bool
+     */
+    private function isForced()
+    {
+        if ($this->option('force')) {
+            return true;
+        }
+
+        return false;
     }
 }
