@@ -47,14 +47,14 @@ class ForgeDeployCommand extends Command
     public function handle()
     {
         if (!$this->isForced()) {
-            $goAhead = $this->confirm('Whould you like to trigger deploy on Forge server?');
+            $goAhead = $this->confirm('Would you like to trigger deploy on Forge server?');
 
             if (!$goAhead) {
                 return;
             }
         }
 
-        $deploymentUrl = env('FORGE_DEPLOY_URL');
+        $deploymentUrl = config('FORGE_DEPLOY_URL');
 
         if (!$deploymentUrl) {
             $this->error('No forge deployment trigger url found.');
@@ -69,7 +69,7 @@ class ForgeDeployCommand extends Command
         ])->post($deploymentUrl);
 
         if ($response->failed()) {
-            $this->error("Error using forge deployment trigger url. {$response->getStatusCode()}");
+            $this->error("Error using forge deployment trigger url. {$response->status()}");
             return 1;
         }
 

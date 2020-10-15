@@ -12,12 +12,16 @@
     ],
     "require": {
         "php": "^7.3",
-        "illuminate/http": "^7.0|^8.0",
-        "illuminate/console": "^7.0|^8.0"
+        "laravel/framework": "^7.0|^8.0"
     },
     "autoload": {
         "psr-4": {
             "TobiSchulz\\ArtisanForgeDeploy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TobiSchulz\\ArtisanForgeDeploy\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -26,5 +30,9 @@
                 "TobiSchulz\\ArtisanForgeDeploy\\ArtisanForgeProvider"
             ]
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4",
+        "orchestra/testbench": "^6.2"
     }
 }
