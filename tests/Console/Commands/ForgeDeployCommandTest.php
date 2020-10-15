@@ -33,7 +33,7 @@ class ForgeDeployCommandTest extends TestCase
 
     public function testPrintsErrorMessageWhenResponseFails(): void
     {
-        Config::set('FORGE_DEPLOY_URL', 'forge.deploy.url');
+        Config::set('artisan-forge-deploy.url', 'forge.deploy.url');
 
         $response = $this->createMock(Response::class);
         $response->method('failed')->willReturn(true);
@@ -51,7 +51,7 @@ class ForgeDeployCommandTest extends TestCase
 
     public function testPrintsErrorMessageWhenResponseBodyIsNotOkay(): void
     {
-        Config::set('FORGE_DEPLOY_URL', 'forge.deploy.url');
+        Config::set('artisan-forge-deploy.url', 'forge.deploy.url');
 
         $response = $this->createMock(Response::class);
         $response->method('body')->willReturn('FAIL');
@@ -69,7 +69,7 @@ class ForgeDeployCommandTest extends TestCase
 
     public function testDeploysWhenAnsweringYesToTriggerQuestion(): void
     {
-        Config::set('FORGE_DEPLOY_URL', 'forge.deploy.url');
+        Config::set('artisan-forge-deploy.url', 'forge.deploy.url');
 
         $response = $this->createMock(Response::class);
         $response->method('body')->willReturn('OK');
@@ -87,7 +87,7 @@ class ForgeDeployCommandTest extends TestCase
 
     public function testSkipsTriggerQuestionWhenUsingForceOption(): void
     {
-        Config::set('FORGE_DEPLOY_URL', 'forge.deploy.url');
+        Config::set('artisan-forge-deploy.url', 'forge.deploy.url');
 
         $response = $this->createMock(Response::class);
         $response->method('body')->willReturn('OK');
