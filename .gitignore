@@ -1,3 +1,6 @@
+.idea/
+.phpunit.cache/
+.phpunit.result.cache
 composer.phar
 /vendor/
 

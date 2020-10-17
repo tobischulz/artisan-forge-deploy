@@ -25,21 +25,6 @@ class ForgeDeployCommand extends Command
     protected $description = 'Use forge deployment trigger url';
 
     /**
-     * The GuzzleHttp Client.
-     *
-     * @var \GuzzleHttp\Client
-     */
-    protected $guzzle;
-
-    /**
-     * Create a new command instance.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -47,19 +32,19 @@ class ForgeDeployCommand extends Command
     public function handle()
     {
         if (!$this->isForced()) {
-            $goAhead = $this->confirm('Whould you like to trigger deploy on Forge server?');
+            $goAhead = $this->confirm('Would you like to trigger deploy on Forge server?');
 
             if (!$goAhead) {
-                return;
+                return 0;
             }
         }
 
-        $deploymentUrl = env('FORGE_DEPLOY_URL');
+        $deploymentUrl = config('artisan-forge-deploy.url');
 
         if (!$deploymentUrl) {
             $this->error('No forge deployment trigger url found.');
 
-            return;
+            return 0;
         }
 
         $this->line('Calling forge deployment trigger url...');
@@ -69,7 +54,7 @@ class ForgeDeployCommand extends Command
         ])->post($deploymentUrl);
 
         if ($response->failed()) {
-            $this->error("Error using forge deployment trigger url. {$response->getStatusCode()}");
+            $this->error("Error using forge deployment trigger url. {$response->status()}");
             return 1;
         }
 

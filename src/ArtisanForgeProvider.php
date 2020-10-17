@@ -16,6 +16,10 @@ class ArtisanForgeProvider extends ServiceProvider
                 \TobiSchulz\ArtisanForgeDeploy\Console\Commands\ForgeDeployCommand::class,
             ]);
         }
+
+        $this->publishes([
+            __DIR__ . '/../config/artisan-forge-deploy.php' => config_path('artisan-forge-deploy.php'),
+        ]);
     }
 
     /**
