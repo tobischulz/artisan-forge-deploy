@@ -14,6 +14,7 @@ class ArtisanForgeProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \TobiSchulz\ArtisanForgeDeploy\Console\Commands\ForgeDeployCommand::class,
+                \TobiSchulz\ArtisanForgeDeploy\Console\Commands\ForgeAddCommand::class,
             ]);
         }
 
