@@ -27,5 +27,6 @@ class ArtisanForgeProvider extends ServiceProvider
      */
     public function register()
     {
+        //
     }
 }
