@@ -17,7 +17,13 @@ php artisan forge:deploy
 
 Pull this package in using composer:
 
-**Use the 2.0 for Laravel 7 or 8**
+**Use the 3.0 for Laravel 9**
+
+```bash
+composer require --dev tobischulz/artisan-forge-deploy "^3.0"
+```
+
+Use the 2.0 for Laravel 7 or 8
 
 ```bash
 composer require --dev tobischulz/artisan-forge-deploy "^2.0"
